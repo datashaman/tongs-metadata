@@ -21,7 +21,7 @@
   "extra": {
     "tongs": {
       "plugins": {
-        "metadata": "Datshaman\\Tongs\\Plugins\\MetadataPlugin"
+        "metadata": "Datashaman\\Tongs\\Plugins\\MetadataPlugin"
       }
     }
   },
