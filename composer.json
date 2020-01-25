@@ -1,0 +1,46 @@
+{
+  "name": "datashaman/tongs-metadata",
+  "type": "library",
+  "description": "Metadata plugin for Tongs",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marlin Forbes",
+      "email": "marlinf@datashaman.com"
+    }
+  ],
+  "require-dev": {
+    "datashaman/tongs": "^0.2.5",
+    "phpunit/phpunit": "^8.5"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "tongs": {
+      "plugins": {
+        "metadata": "Datshaman\\Tongs\\Plugins\\MetadataPlugin"
+      }
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Datashaman\\Tongs\\Plugins\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Datashaman\\Tongs\\Plugins\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
+  "require": {
+    "symfony/yaml": "^4.0"
+  }
+}
