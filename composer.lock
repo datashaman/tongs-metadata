@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43a4ce98c2cd23c6a44b07828a7cc477",
+    "content-hash": "4cb508bd7d6e8aa2e87b75187df14b97",
     "packages": [
         {
             "name": "symfony/polyfill-ctype",
@@ -127,20 +127,19 @@
     "packages-dev": [
         {
             "name": "datashaman/tongs",
-            "version": "0.2.5",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/datashaman/tongs.git",
-                "reference": "6a198eea97262f4735164e62232b53693b526e66"
+                "reference": "c0fe770103395bcd8dfde54b540488d26d01da54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/datashaman/tongs/zipball/6a198eea97262f4735164e62232b53693b526e66",
-                "reference": "6a198eea97262f4735164e62232b53693b526e66",
+                "url": "https://api.github.com/repos/datashaman/tongs/zipball/c0fe770103395bcd8dfde54b540488d26d01da54",
+                "reference": "c0fe770103395bcd8dfde54b540488d26d01da54",
                 "shasum": ""
             },
             "require": {
-                "datashaman/tongs-permalinks": "^0.1.0",
                 "erusev/parsedown": "^1.7",
                 "illuminate/log": "^6.0",
                 "illuminate/pipeline": "^6.12",
@@ -167,6 +166,7 @@
                         "drafts": "Datashaman\\Tongs\\Plugins\\DraftsPlugin",
                         "markdown": "Datashaman\\Tongs\\Plugins\\MarkdownPlugin",
                         "sass": "Datashaman\\Tongs\\Plugins\\SassPlugin",
+                        "serve": "Datashaman\\Tongs\\Plugins\\ServePlugin",
                         "views": "Datashaman\\Tongs\\Plugins\\ViewsPlugin"
                     }
                 }
@@ -193,7 +193,7 @@
                 "metalsmith",
                 "static site generator"
             ],
-            "time": "2020-01-25T09:51:00+00:00"
+            "time": "2020-01-26T07:26:42+00:00"
         },
         {
             "name": "datashaman/tongs-permalinks",

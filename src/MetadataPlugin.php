@@ -20,13 +20,13 @@ class MetadataPlugin extends Plugin
      */
     public function handle(Collection $files, callable $next): Collection
     {
-        $metadata = $this->tongs->metadata();
+        $metadata = $this->tongs()->metadata();
 
         $this
             ->options
             ->each(
                 function ($path, $key) use ($files, &$metadata) {
-                    $fullPath = "{$this->tongs->source()}/{$path}";
+                    $fullPath = "{$this->tongs()->source()}/{$path}";
                     $contents = File::get($fullPath);
                     $extension = File::extension($fullPath);
 
@@ -51,7 +51,7 @@ class MetadataPlugin extends Plugin
                 }
             );
 
-        $this->tongs->metadata($metadata);
+        $this->tongs()->metadata($metadata);
 
         return $next($files);
     }
