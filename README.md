@@ -1,16 +1,23 @@
-# tongs example plugin
+# tongs metadata plugin
 
-Template package for [Tongs](https://github.com/datashaman/tongs).
+File metadata plugin for [Tongs](https://github.com/datashaman/tongs) static site generator.
 
 ## setup
 
-Create a project using this repository as a template:
+If you add the following config to your _tongs.json_ file:
 
-    composer create-project --prefer-dist datashaman/tongs-plugin example-plugin
+    {
+      "plugins": {
+        "metadata": {
+          "authors": "data/authors.json"
+        }
+      }
+    }
 
-Run tests:
+... then this plugin will load the contents of _src/data/authors.json_ into the global metadata as `authors`.
 
-    cd example-plugin
-    vendor/bin/phpunit
+The data files are removed from the build pipeline. The plugin recognizes and parses file with extensions `json`, `yaml` and `yml`.
 
-*nb* Remember to change the metadata in composer.json to match your preferred plugin name and class.
+## source
+
+This plugin is heavily based on [metalsmith-metadata](https://github.com/segmentio/metalsmith-metadata).
