@@ -21,7 +21,7 @@
     "symfony/yaml": "^4.0"
   },
   "require-dev": {
-    "datashaman/tongs": "0.3.*",
+    "datashaman/tongs": "1.*.*",
     "phpunit/phpunit": "^8.5"
   },
   "config": {

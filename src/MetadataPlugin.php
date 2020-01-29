@@ -4,7 +4,6 @@ namespace Datashaman\Tongs\Plugins;
 
 use Datashaman\Tongs\Plugins\Plugin;
 use Datashaman\Tongs\Tongs;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Yaml\Yaml;
 
@@ -13,12 +12,12 @@ class MetadataPlugin extends Plugin
     /**
      * Handle files passed down the pipeline, and call the next plugin in the pipeline.
      *
-     * @param Collection $files
+     * @param array $files
      * @param callable $next
      *
-     * @return Collection
+     * @return array
      */
-    public function handle(Collection $files, callable $next): Collection
+    public function handle(array $files, callable $next): array
     {
         $metadata = $this->tongs()->metadata();
 
@@ -26,8 +25,8 @@ class MetadataPlugin extends Plugin
             ->options
             ->each(
                 function ($path, $key) use ($files, &$metadata) {
-                    $fullPath = "{$this->tongs()->source()}/{$path}";
-                    $contents = File::get($fullPath);
+                    $fullPath = $this->tongs()->source()->path($path);
+                    $contents = $this->tongs()->source()->get($path);
                     $extension = File::extension($fullPath);
 
                     switch ($extension) {
@@ -47,7 +46,7 @@ class MetadataPlugin extends Plugin
                         [$key => $data]
                     );
 
-                    $files->forget($path);
+                    unset($files[$path]);
                 }
             );
 
