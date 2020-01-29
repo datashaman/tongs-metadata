@@ -15,32 +15,30 @@ class MetadataPluginTest extends TestCase
     public function testJson()
     {
         $tongs = new Tongs($this->fixture('json'));
-        $tongs->use(new MetadataPlugin($tongs, [
+        $tongs->clean(true);
+        $tongs->use(new MetadataPlugin([
             'author' => 'author.json',
         ]));
 
         $files = $tongs->build();
         $metadata = $tongs->metadata();
 
-        $fullPath = "{$tongs->source()}/author.json";
-
-        $this->assertEquals(json_decode(File::get($fullPath), true), $metadata['author']);
+        $this->assertEquals(json_decode($tongs->source()->get('author.json'), true), $metadata['author']);
         $this->assertDirEquals($this->fixture('json/expected'), $this->fixture('json/build'));
     }
 
     public function testYaml()
     {
         $tongs = new Tongs($this->fixture('yaml'));
-        $tongs->use(new MetadataPlugin($tongs, [
+        $tongs->clean(true);
+        $tongs->use(new MetadataPlugin([
             'author' => 'author.yaml',
         ]));
 
         $files = $tongs->build();
         $metadata = $tongs->metadata();
 
-        $fullPath = "{$tongs->source()}/author.yaml";
-
-        $this->assertEquals(Yaml::parse(File::get($fullPath), Yaml::PARSE_DATETIME), $metadata['author']);
+        $this->assertEquals(Yaml::parse($tongs->source()->get('author.yaml'), Yaml::PARSE_DATETIME), $metadata['author']);
         $this->assertDirEquals($this->fixture('yaml/expected'), $this->fixture('yaml/build'));
     }
 }

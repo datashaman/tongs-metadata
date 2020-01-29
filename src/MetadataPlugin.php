@@ -21,34 +21,29 @@ class MetadataPlugin extends Plugin
     {
         $metadata = $this->tongs()->metadata();
 
-        $this
-            ->options
-            ->each(
-                function ($path, $key) use ($files, &$metadata) {
-                    $fullPath = $this->tongs()->source()->path($path);
-                    $contents = $this->tongs()->source()->get($path);
-                    $extension = File::extension($fullPath);
+        foreach ($this->options as $key => $path) {
+            $contents = $this->tongs()->source()->get($path);
+            $extension = File::extension($path);
 
-                    switch ($extension) {
-                    case 'json':
-                        $data = json_decode($contents, true);
-                        break;
-                    case 'yaml':
-                    case 'yml':
-                        $data = Yaml::parse($contents, Yaml::PARSE_DATETIME);
-                        break;
-                    default:
-                        throw new Exception('Unhandle file type: ' . $extension);
-                    }
+            switch ($extension) {
+            case 'json':
+                $data = json_decode($contents, true);
+                break;
+            case 'yaml':
+            case 'yml':
+                $data = Yaml::parse($contents, Yaml::PARSE_DATETIME);
+                break;
+            default:
+                throw new Exception('Unhandled file type: ' . $extension);
+            }
 
-                    $metadata = array_merge(
-                        $metadata,
-                        [$key => $data]
-                    );
-
-                    unset($files[$path]);
-                }
+            $metadata = array_merge(
+                $metadata,
+                [$key => $data]
             );
+
+            unset($files[$path]);
+        }
 
         $this->tongs()->metadata($metadata);
 
